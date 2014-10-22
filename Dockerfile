@@ -5,7 +5,7 @@ MAINTAINER foilo
 
 ADD ./ /src
 WORKDIR /src
-RUN cpanm -nf ./CloudMining-*/
+RUN cpanm -nf ./CloudMining-*
 
-CMD ["exec", "twiggy", "--listen",":9999","buchclub.psgi"]
+CMD ["help"]
 ENTRYPOINT ["cloudmining"]
