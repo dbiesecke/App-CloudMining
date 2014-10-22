@@ -1,4 +1,17 @@
 #!/usr/bin/perl
+require App::FatPacker;
+require Data::Dumper;
+require Dist::Zilla;
+require ExtUtils::MakeMaker;
+require JSON;
+require LWP::Simple::REST;
+require Moose;
+require Moose::Role;
+require MooseX::App;
+require MooseX::App::Command;
+require Web::Scraper;
+require WWW::Mechanize;
+require IO::Interactive;
 
 
 package CloudMining;
@@ -6,7 +19,7 @@ package CloudMining;
     # base class of this(Arithmetic) module
 
   
-    use MooseX::App qw(BashCompletion ConfigHome Color Version Typo Man Term);
+    use MooseX::App qw(BashCompletion ConfigHome Color Version  );
     #
     option 'debug' => (
         is            => 'rw',

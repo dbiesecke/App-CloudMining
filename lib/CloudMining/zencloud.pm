@@ -12,7 +12,7 @@ package CloudMining::zencloud;
   use Web::Scraper;
   use LWP::Simple::REST qw/http_post/;
   use MooseX::App::Command; # important
-  extends qw(App::CloudMining); # purely optional, only if you want to use global options from base class
+  extends qw(CloudMining); # purely optional, only if you want to use global options from base class
 
     parameter 'username' => (
         is            => 'rw',
