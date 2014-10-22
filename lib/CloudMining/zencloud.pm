@@ -1,8 +1,7 @@
 require WWW::Mechanize;
-require Data::Dumper qw( Dumper);
-require JSON qw( to_json);
+require Data::Dumper;
+require JSON;
 require Web::Scraper;
-require App::CloudMining;
 
 package CloudMining::zencloud;
 
@@ -12,7 +11,6 @@ package CloudMining::zencloud;
   use Web::Scraper;
   use MooseX::App::Command; # important
   extends qw(App::CloudMining); # purely optional, only if you want to use global options from base class
-  app_base 'CloudMining'; # Defaults to $0
 
     parameter 'username' => (
         is            => 'rw',
@@ -72,7 +70,6 @@ package CloudMining::zencloud;
       my $password = $self->{password};
       my $return = {};
 
-      print "--> Login : $username\r\n" if ($self->{debug});
         use WWW::Mechanize;
         my $get = WWW::Mechanize->new();
          $get->get("https://cloud.zenminer.com/");
