@@ -20,9 +20,9 @@ require WWW::Mechanize;
 
 use lib ( $FindBin::Bin.'/' , $FindBin::Bin.'/lib' , $FindBin::Bin.'/My' );
 
-use App::CloudMining;
+use CloudMining;
 
-my $new = App::CloudMining->new_with_command->run;
+my $new = CloudMining->new_with_command->run;
 
 
 
