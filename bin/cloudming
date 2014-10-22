@@ -2,9 +2,14 @@
 #use Data::Dumper qw( Dumper );
 use FindBin qw( $Bin);
 
-require Moose::Role;
 require MooseX::App;
-require Sub::Identify;
+require Data::Dumper;
+
+#zencloud
+require JSON;
+require Web::Scraper;
+require WWW::Mechanize;
+
 #my $funcname = "ShellUtils";
 #my %symbols = ();
 #my $package =__PACKAGE__; #bring it in at run-time

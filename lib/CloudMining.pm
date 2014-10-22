@@ -1,9 +1,7 @@
 #!/usr/bin/perl
 
-require Data::Dumper;
-require File::HomeDir;
 
-package App::CloudMining;
+package CloudMining;
 
     # base class of this(Arithmetic) module
     
@@ -75,5 +73,5 @@ package App::CloudMining;
 
 1;
 
-    # ABSTRACT: turns baubles into trinkets
+    # ABSTRACT: Shows up differents stats from BTC or Scrypt Cloud Mining Providers
 
