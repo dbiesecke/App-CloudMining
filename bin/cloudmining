@@ -18,7 +18,7 @@ require WWW::Mechanize;
 #    %symbols = %{$package . "::"}; #See Symbol Tables on perlmod
 #}
 
-use lib ( $FindBin::Bin.'/' , $FindBin::Bin.'/lib' , $FindBin::Bin.'/My' );
+use lib ( $FindBin::Bin.'../' , $FindBin::Bin.'../lib' , $FindBin::Bin.'../My' );
 
 use CloudMining;
 

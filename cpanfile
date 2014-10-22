@@ -1,6 +1,5 @@
-requires 'File::HomeDir';
-requires 'Moose';
-requires 'Moose::Meta::Class';
-requires 'MooseX';
+requires 'JSON';
 requires 'MooseX::App';
-
+requires 'MooseX::App::Command';
+requires 'WWW::Mechanize';
+requires 'Web::Scraper';

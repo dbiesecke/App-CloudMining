@@ -2,6 +2,7 @@ require WWW::Mechanize;
 require Data::Dumper;
 require JSON;
 require Web::Scraper;
+require LWP::Simple::REST;
 
 package CloudMining::zencloud;
 
@@ -9,6 +10,7 @@ package CloudMining::zencloud;
   use Data::Dumper qw( Dumper);
   use JSON qw( to_json);
   use Web::Scraper;
+  use LWP::Simple::REST qw/http_post/;
   use MooseX::App::Command; # important
   extends qw(App::CloudMining); # purely optional, only if you want to use global options from base class
 
@@ -30,10 +32,27 @@ package CloudMining::zencloud;
         cmd_aliases       => [qw(p)], # Alternative option name      
     ); # Positional parameter
 
-    option 'as_csv' => (
+    option 'webhook' => (
+        is            => 'rw',
+        isa           => 'Str',
+        default       => 'http://requestb.in/1hjabwg1',
+        documentation => q[ Webhook URL to push your stats ],
+        cmd_aliases       => [qw(w)], # Alternative option name      
+       
+    ); # Option
+
+    option 'as_json' => (
         is            => 'rw',
         isa           => 'Bool',
         default       => 1,
+        documentation => q[ Print as JSON],
+    ); # Option
+    
+    
+    option 'as_csv' => (
+        is            => 'rw',
+        isa           => 'Bool',
+        default       => 0,
         documentation => q[ Print as csv],
     ); # Option
     
@@ -51,11 +70,12 @@ package CloudMining::zencloud;
 
   command_long_description q[ zecloud api commands ];
 
-   sub printexit {
-       my ($self,@arr) = @_;
+   sub formatit {
+       my ($self) = @_;
    
-       print to_json($self->{stats})."\n" if ($self->{debug});
-        return if ($self->{debug});
+        print to_json($self->{stats})."\n" if ($self->{as_json});
+        return if not ($self->{as_csv});
+
         print "Coin,est_payout,power,activated\n" if ($ self->{as_csv} );
         for my $tweet (@{$self->{stats}->{miner}}) {
             print "$tweet->{coin}\t$tweet->{est_payoutBTC}\t$tweet->{power}\t$tweet->{activated}\n" if ($self->{as_csv} );
@@ -76,25 +96,30 @@ package CloudMining::zencloud;
          $get->set_visible( $username, $password );
          $get->click();
          
-         
         $self->{stats} = get_default_stats($get);
-        $self->printexit("test") if not ($self->{show_miner});
-        $self->{miner} = ();
-        
-        $self->{stats}->{feeUSD} = 0;
-        $self->{stats}->{btc24hPayout_est} = 0;
-        foreach(get_miner_stats($get)){
-                my $miner = $_;
-                $self->{stats}->{btc24hPayout_est} =  ($self->{stats}->{btc24hPayout_est}+$miner->{est_payoutBTC});
-                $self->{stats}->{feeUSD} = ($self->{stats}->{feeUSD}+$miner->{feeUSD}); 
-                push(@{$self->{stats}->{miner}},$miner);
-        }
-        
-        
-        
-    #print Data::Dumper::Dumper($_)."\n";            
 
-        $self->printexit("test");
+	if ($self->{show_miner}) {
+	  $self->{miner} = ();          
+	      $self->{stats}->{feeUSD} = 0;
+	      $self->{stats}->{btc24hPayout_est} = 0;
+	      foreach(get_miner_stats($get)){
+		      my $miner = $_;
+		      $self->{stats}->{btc24hPayout_est} =  ($self->{stats}->{btc24hPayout_est}+$miner->{est_payoutBTC});
+		      $self->{stats}->{feeUSD} = ($self->{stats}->{feeUSD}+$miner->{feeUSD}); 
+		      push(@{$self->{stats}->{miner}},$miner);
+	      }        
+	  }
+
+        $self->formatit();
+        my $data = to_json($self->{stats});
+# 	use LWP::Simple::REST qw/http_post/;
+	my $url = $self->{webhook};
+	my $data2 = $self->{stats};
+	  my $foo = http_post( $url, %{$data2} );
+# 	  if($foo->is_success()) {
+# 		print "postback success!\n";
+# 	  }
+	  
         #$return = get_miner_stats($get);
         #print Data::Dumper::Dumper($return)."\n";
         

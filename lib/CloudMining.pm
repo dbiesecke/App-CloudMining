@@ -4,7 +4,8 @@
 package CloudMining;
 
     # base class of this(Arithmetic) module
-    
+
+  
     use MooseX::App qw(BashCompletion ConfigHome Color Version Typo Man Term);
     #
     option 'debug' => (
@@ -13,13 +14,19 @@ package CloudMining;
         documentation => q[set Debug mode for verbose ],
     ); # Global option
 
-   
+    option 'verbose' => (
+        is            => 'rw',
+        isa           => 'Bool',
+        documentation => q[set verbose to show more stats],
+    ); # Global option
+
+    
     has 'private' => ( 
         is              => 'rw',
     ); # not exposed
     
 
-    
+
     #
     #
     #sub new()
