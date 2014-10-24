@@ -1,0 +1,34 @@
+---
+abstract: 'Shows up differents stats from BTC or Scrypt Cloud Mining Providers'
+author:
+  - 'natedat <nobody@nothing.com>'
+build_requires: {}
+configure_requires:
+  ExtUtils::MakeMaker: '0'
+dynamic_config: 0
+generated_by: 'Dist::Zilla version 5.021, CPAN::Meta::Converter version 2.142060'
+license: perl
+meta-spec:
+  url: http://module-build.sourceforge.net/META-spec-v1.4.html
+  version: '1.4'
+name: CloudMining
+requires:
+  App::FatPacker: '0'
+  Data::Dumper: '0'
+  Dist::Zilla: '0'
+  ExtUtils::MakeMaker: '0'
+  FindBin: '0'
+  IO::Interactive: '0'
+  JSON: '0'
+  LWP::Simple::REST: '0'
+  Moose: '0'
+  Moose::Role: '0'
+  MooseX::App: '0'
+  MooseX::App::Command: '0'
+  WWW::Mechanize: '0'
+  Web::Scraper: '0'
+  lib: '0'
+resources:
+  homepage: http://github.com/natedat/App-CloudMining/
+  repository: git://github.com/natedat/App-CloudMining.git
+version: '0.001'

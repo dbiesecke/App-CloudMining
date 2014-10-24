@@ -1,0 +1,32 @@
+#!/usr/bin/perl
+#use Data::Dumper qw( Dumper );
+use FindBin qw( $Bin);
+
+require MooseX::App;
+require Data::Dumper;
+
+#zencloud
+require JSON;
+require Web::Scraper;
+require WWW::Mechanize;
+
+#my $funcname = "ShellUtils";
+#my %symbols = ();
+#my $package =__PACKAGE__; #bring it in at run-time
+#{
+#    no strict;
+#    %symbols = %{$package . "::"}; #See Symbol Tables on perlmod
+#}
+
+use lib ( $FindBin::Bin.'../' , $FindBin::Bin.'../lib' , $FindBin::Bin.'../My' );
+
+use CloudMining;
+
+my $new = CloudMining->new_with_command->run;
+
+
+
+
+exit;
+
+ 
