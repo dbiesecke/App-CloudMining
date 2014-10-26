@@ -1,6 +1,7 @@
 #!/usr/bin/perl
 #use Data::Dumper qw( Dumper );
 use FindBin qw( $Bin);
+BEGIN { $ENV{PERL_LWP_SSL_VERIFY_HOSTNAME} = 0 };
 
 require MooseX::App;
 require Data::Dumper;
