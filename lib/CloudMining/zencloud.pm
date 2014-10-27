@@ -134,7 +134,7 @@ package CloudMining::zencloud;
 	}    
 	my $data =  $self->{stats};
 	
-	print Dumper(post_dash($url,$data))."\n";
+	#print Dumper(post_dash($url,$data))."\n";
 
    
 # 	my $data2 = $self->{stats};
