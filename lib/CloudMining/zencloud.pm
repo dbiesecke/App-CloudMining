@@ -134,25 +134,11 @@ package CloudMining::zencloud;
 	}    
 	my $data =  $self->{stats};
 	
-	#print Dumper(post_dash($url,$data))."\n";
+ 
+#$return = get_miner_stats($get);
+#print "----------\n".Data::Dumper::Dumper($scrap->scrape($get->content()))."\n";
 
-   
-# 	my $data2 = $self->{stats};
-# 	my ($token,$current,$last) = ($self->{auth_token},$self->{stats}{json}{last}, $self->{stats}{json}{current} );
-# 	print "--> $token $current\n";
-# 	my $foo = http_post( $url, { auth_token =>  "$token" , current => "$current", last => "$last"  , json => "true" } );  
-# 	  if($foo->is_success()) {
-# 		print "postback success!\n";
-# 	  }
-# 	  
-        #$return = get_miner_stats($get);
-        #print Data::Dumper::Dumper($return)."\n";
-        
-        
-      #   $get->save_content("temp.html");
-         #print "----------\n".Data::Dumper::Dumper($scrap->scrape($get->content()))."\n";
-        #my $show_coins = $self->{coins} || '3';
-        #$self->get("https://cloud.zenminer.com/ajax/miners");
+	return 1;
 
       
   }
