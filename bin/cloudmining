@@ -10,6 +10,11 @@ require Data::Dumper;
 require JSON;
 require Web::Scraper;
 require WWW::Mechanize;
+#use 
+#IO::Socket::SSL::set_ctx_defaults(
+#     SSL_verifycn_scheme => 'www',
+#     SSL_verify_mode => 0,
+#);
 
 #my $funcname = "ShellUtils";
 #my %symbols = ();

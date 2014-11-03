@@ -98,9 +98,16 @@ package CloudMining::zencloud;
       my $username = $self->{username};
       my $password = $self->{password};
       my $return = {};
+	my $ua = LWP::UserAgent->new(
+	  ssl_opts => { SSL_verify_mode => 'SSL_VERIFY_NONE'},
+	);
 
         use WWW::Mechanize;
-        my $get = WWW::Mechanize->new();
+        my $get = WWW::Mechanize->new(
+				    ssl_opts => {
+			    verify_hostname => 0, # this key is likely going to be removed in future LWP >6.04
+			}
+				      );
          $get->get("https://cloud.zenminer.com/");
          $get->set_visible( $username, $password );
          $get->click();
